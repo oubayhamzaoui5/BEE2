@@ -1,8 +1,7 @@
 "use client";
 
 import { Facebook, Instagram, Linkedin, Send, Twitter } from "lucide-react";
-import { useQuery } from "convex/react";
-import { api } from "@/convex/_generated/api";
+import { useEffect, useState } from "react";
 import { AdBanner } from "@/components/AdBanner";
 import { ArticleCard } from "@/components/ArticleCard";
 import { ContentRow } from "@/components/ContentRow";
@@ -48,15 +47,29 @@ const fallbackData: HomeData = {
 const navItems = ["Accueil", "Épisodes", "Articles", "Shorts", "Événements", "Abonnement"];
 
 export function HomeContent() {
-  if (!process.env.NEXT_PUBLIC_CONVEX_URL) {
-    return <HomeView data={fallbackData} />;
-  }
+  const [data, setData] = useState<HomeData>(fallbackData);
 
-  return <LiveHomeContent />;
-}
+  useEffect(() => {
+    let mounted = true;
 
-function LiveHomeContent() {
-  const data = normalizeHomeData(useQuery(api.content.getHome) ?? fallbackData);
+    fetch("/api/content")
+      .then((response) => (response.ok ? response.json() : fallbackData))
+      .then((content) => {
+        if (mounted) {
+          setData(normalizeHomeData(content));
+        }
+      })
+      .catch(() => {
+        if (mounted) {
+          setData(fallbackData);
+        }
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
   return <HomeView data={data} />;
 }
 
