@@ -1,6 +1,6 @@
 # VPS Test Deploy
 
-This setup runs local Convex on `127.0.0.1:3210` and Next.js on port `3001`.
+This setup runs local Convex on `127.0.0.1:3210` and Next.js on port `3002`.
 
 ## Server setup
 
@@ -42,13 +42,13 @@ pm2 status
 Open:
 
 ```text
-http://YOUR_VPS_IP:3001
+http://YOUR_VPS_IP:3002
 ```
 
 If firewall is enabled:
 
 ```bash
-sudo ufw allow 3001/tcp
+sudo ufw allow 3002/tcp
 ```
 
 ## Update later
