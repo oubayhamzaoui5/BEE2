@@ -17,11 +17,13 @@ export async function POST(request: Request) {
     const client = getConvexHttpClient();
     const session = await client.mutation(api.auth.login, { email, password, tokenHash });
     const response = NextResponse.json({ ok: true, email: session.email });
+    const proto = request.headers.get("x-forwarded-proto");
+    const isHttps = proto ? proto.includes("https") : new URL(request.url).protocol === "https:";
 
     response.cookies.set(ADMIN_COOKIE, token, {
       httpOnly: true,
       sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
+      secure: isHttps,
       path: "/",
       expires: new Date(session.expiresAt)
     });
@@ -29,7 +31,7 @@ export async function POST(request: Request) {
     return response;
   } catch (error) {
     const message = error instanceof Error ? error.message : "Login failed.";
-    const status = message.includes("Missing NEXT_PUBLIC_CONVEX_URL") ? 500 : 401;
+    const status = message.includes("Missing Convex URL") ? 500 : 401;
     return NextResponse.json({ error: message }, { status });
   }
 }

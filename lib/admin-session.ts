@@ -17,7 +17,7 @@ export function getConvexHttpClient() {
   const convexUrl = process.env.NEXT_PUBLIC_CONVEX_URL ?? process.env.CONVEX_URL;
 
   if (!convexUrl) {
-    throw new Error("Missing NEXT_PUBLIC_CONVEX_URL");
+    throw new Error("Missing Convex URL");
   }
 
   return new ConvexHttpClient(convexUrl);
