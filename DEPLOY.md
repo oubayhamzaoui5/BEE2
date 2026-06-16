@@ -18,7 +18,7 @@ sudo npm install -g pm2
 cd /var/www
 git clone <YOUR_REPO_URL> bee2
 cd bee2
-npm ci
+npm install
 cp .env.local.example .env.local
 ```
 
@@ -56,7 +56,7 @@ sudo ufw allow 3002/tcp
 ```bash
 cd /var/www/bee2
 git pull
-npm ci
+npm install
 npm run build
 npx convex run seed:replaceEditorialContent
 pm2 restart bee2-web bee2-convex
