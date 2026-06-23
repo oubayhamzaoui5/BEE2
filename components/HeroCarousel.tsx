@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { ChevronLeft, ChevronRight, Play, UserRound } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { HeroSlide } from "@/lib/mock-data";
+import { SoonPlaceholder } from "@/components/SoonPlaceholder";
 
 const SLIDE_MS = 6500;
 
@@ -40,14 +40,7 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
               index === active ? "opacity-100" : "opacity-0"
             }`}
           >
-            <Image
-              src={item.image}
-              alt=""
-              fill
-              priority={index === 0 || index === active}
-              sizes="100vw"
-              className={`object-cover ${index === active ? "animate-ken-burns" : ""}`}
-            />
+            <SoonPlaceholder seed={item.id} className={index === active ? "animate-ken-burns" : ""} />
           </div>
         ))}
         {/* cinematic vignette stack */}
@@ -170,7 +163,7 @@ export function HeroCarousel({ slides }: HeroCarouselProps) {
               aria-label={`Présenter ${item.speaker}`}
               aria-current={index === active}
             >
-              <Image src={item.image} alt="" fill sizes="208px" className="object-cover" />
+              <SoonPlaceholder seed={`${item.id}-thumb`} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/25 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-2.5 sm:p-3">
                 <p dir="auto" className="text-[0.58rem] font-black uppercase tracking-[0.16em] text-bee-gold">

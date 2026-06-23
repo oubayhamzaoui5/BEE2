@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { Clock3 } from "lucide-react";
 import type { Article } from "@/lib/mock-data";
+import { SoonPlaceholder } from "@/components/SoonPlaceholder";
 
 interface ArticleCardProps {
   article: Article;
@@ -10,13 +10,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
   return (
     <article className="group overflow-hidden rounded-xl border border-bee-line bg-bee-surface shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:border-bee-gold/40 hover:shadow-card-hover">
       <div className="relative aspect-[16/9] overflow-hidden bg-bee-coal">
-        <Image
-          src={article.image}
-          alt=""
-          fill
-          sizes="(min-width: 1024px) 640px, 100vw"
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
-        />
+        <SoonPlaceholder seed={article.id ?? article.title} className="transition-transform duration-700 group-hover:scale-105" />
         <div className="absolute inset-0 bg-gradient-to-t from-bee-surface via-transparent to-transparent" />
         <span className="absolute left-4 top-4 rounded bg-black/70 px-2.5 py-1 text-[0.65rem] font-black uppercase tracking-[0.18em] text-bee-gold backdrop-blur-md">
           {article.category}

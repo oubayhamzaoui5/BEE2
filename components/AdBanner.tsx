@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { ArrowRight, Calendar, MapPin } from "lucide-react";
 import type { Ad } from "@/lib/mock-data";
+import { SoonPlaceholder } from "@/components/SoonPlaceholder";
 
 interface AdBannerProps {
   ad: Ad;
@@ -11,13 +11,7 @@ export function AdBanner({ ad }: AdBannerProps) {
     <aside className="group relative overflow-hidden rounded-2xl border border-bee-line shadow-card transition-all duration-300 hover:border-bee-gold/35 hover:shadow-card-hover">
       {/* full-bleed billboard, text laid over the image like a platform promo */}
       <div className="relative min-h-[320px] sm:min-h-[300px]">
-        <Image
-          src={ad.image}
-          alt=""
-          fill
-          sizes="(min-width: 1280px) 1320px, 100vw"
-          className="object-cover transition-transform duration-[1.2s] group-hover:scale-105"
-        />
+        <SoonPlaceholder seed={ad.id ?? ad.headline} className="transition-transform duration-[1.2s] group-hover:scale-105" />
         <div className="absolute inset-0 bg-gradient-to-r from-bee-ink/95 via-bee-ink/75 to-bee-ink/20" />
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-bee-ink/80 to-transparent" />
 

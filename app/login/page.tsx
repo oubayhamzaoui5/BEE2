@@ -38,10 +38,10 @@ export default function LoginPage() {
       <section className="w-full max-w-md rounded-xl border border-bee-line bg-bee-surface p-6 shadow-card sm:p-8">
         <div className="mb-7">
           <div className="mb-4 flex h-11 w-11 items-center justify-center rounded bg-bee-gold font-display font-black text-bee-ink">
-            B2
+            B.
           </div>
           <h1 className="font-display text-3xl font-semibold">Admin login</h1>
-          <p className="mt-2 text-sm text-bee-muted">Gestion du contenu BEE2.</p>
+          <p className="mt-2 text-sm text-bee-muted">Gestion du contenu Beto.</p>
         </div>
 
         <form className="space-y-4" onSubmit={onSubmit}>

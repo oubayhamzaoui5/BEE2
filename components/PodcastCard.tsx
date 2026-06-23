@@ -1,24 +1,16 @@
-import Image from "next/image";
 import { Play, Radio } from "lucide-react";
 import type { Podcast } from "@/lib/mock-data";
+import { SoonPlaceholder } from "@/components/SoonPlaceholder";
 
 interface PodcastCardProps {
   podcast: Podcast;
-  priority?: boolean;
 }
 
-export function PodcastCard({ podcast, priority = false }: PodcastCardProps) {
+export function PodcastCard({ podcast }: PodcastCardProps) {
   return (
     <article className="group w-[300px] shrink-0 overflow-hidden rounded-xl border border-bee-line bg-bee-surface shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:border-bee-gold/40 hover:shadow-card-hover sm:w-[340px]">
       <div className="relative aspect-video overflow-hidden bg-bee-coal">
-        <Image
-          src={podcast.image}
-          alt=""
-          fill
-          priority={priority}
-          sizes="340px"
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
-        />
+        <SoonPlaceholder seed={podcast.id ?? podcast.title} className="transition-transform duration-700 group-hover:scale-105" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" />
         <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded bg-black/70 px-2.5 py-1 text-[0.62rem] font-black uppercase tracking-[0.16em] text-white backdrop-blur-md">
           <Radio className="h-3 w-3 text-bee-gold" aria-hidden="true" />

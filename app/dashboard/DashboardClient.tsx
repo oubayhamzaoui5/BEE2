@@ -291,7 +291,7 @@ export function DashboardClient() {
               </h2>
               <div className="mt-4 flex flex-wrap items-center gap-2.5">
                 <AvatarLabel item={draft} />
-                <span className="text-[13px] font-medium text-[#D6D6D4]">{String(draft.speaker ?? draft.guest ?? draft.author ?? draft.brand ?? "BEE2")}</span>
+                <span className="text-[13px] font-medium text-[#D6D6D4]">{String(draft.speaker ?? draft.guest ?? draft.author ?? draft.brand ?? "Beto.")}</span>
                 <span className="text-xs font-semibold uppercase tracking-[0.6px] text-[#F2C744]">{getItemMeta(draft)}</span>
               </div>
               <div className="mt-6 flex flex-wrap gap-3">
@@ -375,10 +375,10 @@ function Sidebar({
       <div className="flex h-full flex-col">
         <div className="flex items-center gap-3 px-[22px] pb-[18px] pt-[22px]">
           <div className="flex h-[34px] w-[34px] items-center justify-center rounded-[9px] bg-[#F2C744] text-[15px] font-bold tracking-[-0.5px] text-[#1A1505]">
-            B2
+            B.
           </div>
           <div>
-            <div className="text-base font-bold tracking-[0.5px]">BEE2</div>
+            <div className="text-base font-bold tracking-[0.5px]">Beto.</div>
             <div className="mt-px text-[10px] font-semibold uppercase tracking-[1.5px] text-[#6F6F6D]">Console Admin</div>
           </div>
         </div>
@@ -441,7 +441,7 @@ function Sidebar({
             </div>
             <div className="min-w-0 flex-1">
               <div className="truncate text-[13px] font-semibold">Admin</div>
-              <div className="text-[11px] text-[#6F6F6D]">Éditeur BEE2</div>
+              <div className="text-[11px] text-[#6F6F6D]">Editeur Beto.</div>
             </div>
             <button className="text-[#6F6F6D] transition hover:text-[#F2C744]" onClick={onLogout} aria-label="Déconnexion">
               <LogOut className="h-4 w-4" aria-hidden="true" />
@@ -601,7 +601,7 @@ function ContentTable({
                 </div>
 
                 <div className="hidden text-[13px] text-[#C9C9C7] lg:block">{collectionMeta.singular}</div>
-                <div className="hidden truncate text-[13px] text-[#C9C9C7] lg:block">{String(item.speaker ?? item.guest ?? item.author ?? item.brand ?? "BEE2")}</div>
+                <div className="hidden truncate text-[13px] text-[#C9C9C7] lg:block">{String(item.speaker ?? item.guest ?? item.author ?? item.brand ?? "Beto.")}</div>
                 <div>
                   <span
                     className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[12px] font-semibold"
@@ -834,7 +834,7 @@ function StatusPill({ tone, label }: { tone: StatusTone; label: string }) {
 }
 
 function AvatarLabel({ item }: { item: Record<string, string | number> }) {
-  const name = String(item.speaker ?? item.guest ?? item.author ?? item.brand ?? "BEE2");
+  const name = String(item.speaker ?? item.guest ?? item.author ?? item.brand ?? "Beto.");
   const initials = name
     .split(" ")
     .map((part) => part[0])

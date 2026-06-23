@@ -26,11 +26,11 @@ export function SiteHeader() {
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-5 px-4 py-3.5 sm:px-6 lg:px-10">
         <div className="flex items-center gap-8">
-          <a href="#" className="flex items-center gap-2.5" aria-label="Accueil BEE2">
+          <a href="#" className="flex items-center gap-2.5" aria-label="Accueil Beto.">
             <span className="flex h-9 w-9 items-center justify-center rounded bg-bee-gold font-display text-base font-black text-bee-ink shadow-glow">
-              B2
+              B.
             </span>
-            <span className="font-display text-xl font-black tracking-wide text-bee-cream">BEE2</span>
+            <span className="font-display text-xl font-black tracking-wide text-bee-cream">Beto.</span>
           </a>
 
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Navigation principale">

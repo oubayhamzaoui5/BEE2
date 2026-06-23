@@ -14,7 +14,7 @@ const sans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "BEE2 | Les professionnels partagent leur savoir",
+  title: "Beto. | Les professionnels partagent leur savoir",
   description: "Interviews, conseils et événements de médecins, avocats, architectes et formateurs — dans leurs propres mots."
 };
 
