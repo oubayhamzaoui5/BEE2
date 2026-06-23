@@ -1,5 +1,19 @@
-const u = (id: string, w: number, h: number) =>
-  `https://images.unsplash.com/${id}?w=${w}&h=${h}&fit=crop&q=80&auto=format`;
+const palette = [
+  ["#facc15", "#ef4444", "#111827"],
+  ["#22d3ee", "#2563eb", "#020617"],
+  ["#a78bfa", "#ec4899", "#18181b"],
+  ["#34d399", "#84cc16", "#052e16"],
+  ["#fb923c", "#f97316", "#1c1917"],
+  ["#f472b6", "#8b5cf6", "#111827"],
+  ["#38bdf8", "#14b8a6", "#0f172a"],
+  ["#fde047", "#f59e0b", "#1c1917"]
+] as const;
+
+const soon = (seed: string) => {
+  const [from, to, ink] = palette[Array.from(seed).reduce((sum, char) => sum + char.charCodeAt(0), 0) % palette.length];
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="${from}"/><stop offset="1" stop-color="${to}"/></linearGradient><pattern id="p" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0v48" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="2"/></pattern></defs><rect width="1200" height="675" fill="url(#g)"/><rect width="1200" height="675" fill="url(#p)" opacity=".45"/><circle cx="210" cy="115" r="250" fill="rgba(255,255,255,.34)"/><circle cx="1010" cy="585" r="280" fill="rgba(0,0,0,.24)"/><g transform="rotate(-8 600 337.5)"><rect x="410" y="250" width="380" height="145" rx="18" fill="rgba(255,255,255,.82)"/><text x="600" y="347" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="86" font-weight="900" letter-spacing="8" fill="${ink}">SOON</text></g></svg>`;
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+};
 
 export const heroSlides = [
   {
@@ -9,7 +23,7 @@ export const heroSlides = [
     speaker: "د. آمنة الحداد",
     profession: "طبيبة قلب",
     episode: "Épisode 14",
-    image: "/episodes/prevention-podcast.png"
+    image: soon("hero-1")
   },
   {
     type: "Épisode",
@@ -18,7 +32,7 @@ export const heroSlides = [
     speaker: "مروان الفارسي",
     profession: "مهندس معماري",
     episode: "Épisode 11",
-    image: "/episodes/episode-2.png"
+    image: soon("hero-2")
   },
   {
     type: "Court",
@@ -26,7 +40,7 @@ export const heroSlides = [
     speaker: "كريم المنصوري",
     profession: "محامي أعمال",
     episode: "Court · 3 min",
-    image: "/episodes/episode-3.png"
+    image: soon("hero-3")
   },
   {
     type: "Épisode",
@@ -35,7 +49,7 @@ export const heroSlides = [
     speaker: "سارة الرياحي",
     profession: "مكوّنة UX",
     episode: "Épisode 9",
-    image: "/episodes/episode-4.png"
+    image: soon("hero-4")
   },
   {
     type: "Série",
@@ -44,7 +58,7 @@ export const heroSlides = [
     speaker: "د. نادية البربار",
     profession: "أخصائية تغذية",
     episode: "Série · Partie 3",
-    image: "/episodes/episode-5.png"
+    image: soon("hero-5")
   },
   {
     type: "Épisode",
@@ -53,7 +67,7 @@ export const heroSlides = [
     speaker: "ليلى حداد",
     profession: "مستشارة استراتيجية",
     episode: "Épisode 15",
-    image: "/episodes/episode-6.png"
+    image: soon("hero-6")
   }
 ] as const;
 
@@ -64,7 +78,7 @@ export const podcasts = [
     guestProfession: "طبيبة قلب",
     episode: "Épisode 14",
     duration: "42 min",
-    image: "/episodes/prevention-podcast.png"
+    image: soon("podcast-1")
   },
   {
     title: "كيفاش نصممو فضاءات تخدم الناس موش العكس",
@@ -72,7 +86,7 @@ export const podcasts = [
     guestProfession: "مهندس معماري",
     episode: "Épisode 11",
     duration: "38 min",
-    image: "/episodes/episode-2.png"
+    image: soon("podcast-2")
   },
   {
     title: "كيفاش تبيع تكوينك بلا ما تنقص من قيمتك",
@@ -80,7 +94,7 @@ export const podcasts = [
     guestProfession: "مكوّنة UX",
     episode: "Épisode 9",
     duration: "35 min",
-    image: "/episodes/episode-3.png"
+    image: soon("podcast-3")
   },
   {
     title: "العقد اللي يلزمك قبل أول نهار خدمة",
@@ -88,7 +102,7 @@ export const podcasts = [
     guestProfession: "محامي أعمال",
     episode: "Épisode 7",
     duration: "44 min",
-    image: "/episodes/episode-4.png"
+    image: soon("podcast-4")
   }
 ] as const;
 
@@ -101,7 +115,7 @@ export const articles = [
     authorProfession: "طبيبة قلب",
     category: "صحة",
     readTime: "6 min de lecture",
-    image: u("photo-1559757175-0eb30cd8c063", 1200, 675)
+    image: soon("article-1")
   },
   {
     title: "3 بنود في العقد الفريلانس يلزمك تقراهم مليح",
@@ -111,7 +125,7 @@ export const articles = [
     authorProfession: "محامي أعمال",
     category: "قانون",
     readTime: "8 min de lecture",
-    image: u("photo-1450101499163-c8848c66ca85", 1200, 675)
+    image: soon("article-2")
   },
   {
     title: "علاش الأوبن سبيس ينقص في التركيز",
@@ -121,7 +135,7 @@ export const articles = [
     authorProfession: "مهندس معماري",
     category: "هندسة",
     readTime: "5 min de lecture",
-    image: u("photo-1497366216548-37526070297c", 1200, 675)
+    image: soon("article-3")
   },
   {
     title: "التهاب ساكت في البدن: شنوّة تنجم تعمل الماكلة اليومية",
@@ -131,7 +145,7 @@ export const articles = [
     authorProfession: "أخصائية تغذية",
     category: "تغذية",
     readTime: "7 min de lecture",
-    image: u("photo-1512621776951-a57141f2eefd", 1200, 675)
+    image: soon("article-4")
   }
 ] as const;
 
@@ -143,7 +157,7 @@ export const ads = [
     brand: "AHP Summit",
     location: "Grand Hyatt, Dubaï",
     date: "15 – 17 mars 2026",
-    image: u("photo-1587825140708-dfaf72ae4b04", 900, 360)
+    image: soon("ad-1")
   },
   {
     label: "Événement à venir",
@@ -152,7 +166,7 @@ export const ads = [
     brand: "LFF 2026",
     location: "The Ritz-Carlton, Riyad",
     date: "8 – 9 avril 2026",
-    image: u("photo-1560472354-b33ff0c44a43", 900, 360)
+    image: soon("ad-2")
   }
 ] as const;
 
@@ -162,34 +176,34 @@ export const shorts = [
     speaker: "د. نادية البربار",
     profession: "أخصائية تغذية",
     views: "24,1K vues",
-    image: u("photo-1579154204601-01588f351e67", 540, 960)
+    image: soon("short-1")
   },
   {
     title: "البند الصغير في العقد اللي ينجم يوقف خدمتك",
     speaker: "كريم المنصوري",
     profession: "محامي",
     views: "18,4K vues",
-    image: u("photo-1450101499163-c8848c66ca85", 540, 960)
+    image: soon("short-2")
   },
   {
     title: "علاش السلالم في البناية أهم مما تتصور",
     speaker: "مروان الفارسي",
     profession: "مهندس معماري",
     views: "11,7K vues",
-    image: u("photo-1519710164239-da123dc03ef4", 540, 960)
+    image: soon("short-3")
   },
   {
     title: "كيفاش تحدد سعر تكوينك بلا خوف",
     speaker: "سارة الرياحي",
     profession: "مكوّنة",
     views: "15,3K vues",
-    image: u("photo-1516321318423-f06f85e504b3", 540, 960)
+    image: soon("short-4")
   },
   {
     title: "شنوّة يشوف طبيب القلب في ECG ما تشوفوش إنتي",
     speaker: "د. آمنة الحداد",
     profession: "طبيبة قلب",
     views: "31,8K vues",
-    image: u("photo-1628595351029-c2bf17511435", 540, 960)
+    image: soon("short-5")
   }
 ] as const;

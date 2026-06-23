@@ -1,7 +1,7 @@
 import { mutation } from "./_generated/server";
 import type { MutationCtx } from "./_generated/server";
 import { ensureContentSeeded } from "./lib/seedContent";
-import { articles, heroSlides, podcasts, shorts } from "./seedData";
+import { ads, articles, heroSlides, podcasts, shorts } from "./seedData";
 
 const DEFAULT_ADMIN_EMAIL = "admin@admin.com";
 const DEFAULT_ADMIN_HASH = "$2b$12$Bcho/yIeFs1EdQm47d6WauUpbmNGSsdZs7/fVUpqs6kcgkvBzhzWC";
@@ -70,6 +70,20 @@ async function replaceArticles(ctx: MutationCtx) {
   await Promise.all(existing.slice(articles.length).map((item) => ctx.db.delete(item._id)));
 }
 
+async function replaceAds(ctx: MutationCtx) {
+  const existing = await ctx.db.query("ads").withIndex("by_order").order("asc").collect();
+
+  await Promise.all(
+    ads.map((item, order) => {
+      const current = existing[order];
+      const row = { ...item, order };
+      return current ? ctx.db.patch(current._id, row) : ctx.db.insert("ads", row);
+    })
+  );
+
+  await Promise.all(existing.slice(ads.length).map((item) => ctx.db.delete(item._id)));
+}
+
 async function replaceShorts(ctx: MutationCtx) {
   const existing = await ctx.db.query("shorts").withIndex("by_order").order("asc").collect();
 
@@ -90,6 +104,7 @@ export const replaceEditorialContent = mutation({
     await replaceHeroSlides(ctx);
     await replacePodcasts(ctx);
     await replaceArticles(ctx);
+    await replaceAds(ctx);
     await replaceShorts(ctx);
 
     return { ok: true };
